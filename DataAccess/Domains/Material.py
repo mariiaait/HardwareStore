@@ -1,5 +1,5 @@
 class Material:
-    '''Описание класса материал'''
+    '''Material class description'''
     __id: int = 0
 
     def __init__(self, name: str, price: float):
@@ -23,3 +23,15 @@ class Material:
     def set_id(cls) -> int:
         cls.__id += 1
         return cls.__id
+
+    def __setattr__(self, key, value):
+        types_dict = {'__id': int, '_name': str, '_price': float}
+        if key not in types_dict:
+            raise ValueError
+
+        if not isinstance(value, (types_dict[key])):
+            raise ValueError
+
+        object.__setattr__(self, key, value)
+
+
