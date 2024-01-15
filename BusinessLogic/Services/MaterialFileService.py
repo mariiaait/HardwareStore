@@ -1,32 +1,31 @@
 from HardwareStore.DataAccess.Repositories import MaterialFileRepository
-
-
 class MaterialFileService:
     def __init__(self, repository: MaterialFileRepository):
         self._repository = repository
 
     def add(self, data):
-        self._repository.add(data)
-
-    def get(self, data):
         try:
-            return self._repository(data)
-        except ValueError as ex:
-            print(ex)
+            self._repository.add(data)
+        except FileNotFoundError('The file has been moved to another directory or does not exist'):
+            pass
 
-
+    def get(self):
+        try:
+            return self._repository.get()
+        except FileNotFoundError('The file has been moved to another directory or does not exist'):
+            pass
 
     def get_by_id(self, id):
         try:
-            return self._repository(id)
-        except ValueError as ex:
-            print(ex)
+            return self._repository.get_by_id(id)
+        except FileNotFoundError('The file has been moved to another directory or does not exist'):
+            pass
 
-    def update(self, data):
+    def update(self, id, data):
         try:
-            return self._repository(data)
-        except ValueError as ex:
-            print(ex)
+            return self._repository.update(id, data)
+        except FileNotFoundError('The file has been moved to another directory or does not exist'):
+            pass
 
 
 
