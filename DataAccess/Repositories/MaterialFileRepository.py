@@ -34,7 +34,3 @@ class MaterialFileRepository:
         all_data = self.get()
         all_data.remove(data_to_remove)
         self.__write(all_data)
-
-
-
-
