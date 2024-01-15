@@ -34,4 +34,3 @@ class MaterialFileService:
             return self._repository.delete(id)
         except FileNotFoundError('The file has been moved to another directory or does not exist'):
             pass
-
