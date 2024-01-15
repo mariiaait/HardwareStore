@@ -15,6 +15,7 @@ class MaterialFileRepository:
             with open(self._context.path, "w", encoding="utf-8") as file:
                 json.dump({"materials": [data]}, file, indent=3)
 
+
     def get(self):
         with open(self._context.path, "r", encoding="utf-8") as file:
             return json.load(file)
