@@ -55,10 +55,5 @@ class DefaultFileDataInitializer:
                     "name": "Plaster",
                     "price": 170
                 },
-                {
-                    "id": 10,
-                    "name": "PVC",
-                    "price": 120
-                }
             ]
         }
