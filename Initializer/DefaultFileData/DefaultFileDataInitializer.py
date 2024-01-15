@@ -1,11 +1,12 @@
 import json
 
-from HardwareStore.DataAccess.Contexts import FileDataContext
+from DataAccess.Contexts.FileDataContext import FileDataContext
 
 
 class DefaultFileDataInitializer:
     def __init__(self, context: FileDataContext):
         self._context = context
+
     def initializer(self):
         with open(self._context.path, "w", encoding="utf-8") as file:
             json.dump(self.__get_data(), file, indent=3)
