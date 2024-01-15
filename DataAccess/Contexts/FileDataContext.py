@@ -1,4 +1,4 @@
-class DataContext:
+class FileDataContext:
     __instance = None
     __initialized = False
 
