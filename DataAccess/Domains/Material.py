@@ -27,10 +27,10 @@ class Material:
     def __setattr__(self, key, value):
         types_dict = {'__id': int, '_name': str, '_price': float}
         if key not in types_dict:
-            raise AttributeError
+            raise AttributeError('Attribute was not found')
 
         if not isinstance(value, (types_dict[key])):
-            raise TypeError
+            raise TypeError('incorrect data type')
 
         object.__setattr__(self, key, value)
 
