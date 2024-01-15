@@ -6,33 +6,23 @@ class MaterialFileRepository:
         self._context = context
 
     def add(self, data):
-        with open(self._context.path, "a", encoding="utf-8") as file:
-            json.dump(data, file, indent=3)
+        try:
+            self.__write(data)
+        except FileNotFoundError:
+            data = {"materials": []}
 
     def get(self):
         with open(self._context.path, "r", encoding="utf-8") as file:
             return json.load(file)
 
     def get_by_id(self, id):
-        return next(filter(lambda x: x[id] == id, self.get()["materials"]))
+        return next(filter(lambda x: x['id'] == id, self.get()["materials"]))
 
-    def update(self, data):
-        previous = self.get()
-        MaterialFileRepository.__union(previous, data)
-        self.add(previous)
+    def update(self, id, data):
+        all_data = self.get()
+        updated_data = {"materials": list(map(lambda current: data if current['id'] == id else current, all_data["materials"]))}
+        self.__write(updated_data)
 
-    @staticmethod
-    def __union(data1, data2):
-        for key, value in data1.items():
-            for item in value:
-                if not MaterialFileRepository.__includes(item, data2[key]):
-                    data1[key].append(item)
-
-    @staticmethod
-    def __includes(data1, data2):
-        for item in data2:
-            _, *current_values = item.values()
-            _, *data1_values = data1.values()
-            if current_values == data1_values:
-                return True
-        return False
+    def __write(self, data):
+        with open(self._context.path, "w", encoding="utf-8") as file:
+            json.dump(data, file, indent=3)
