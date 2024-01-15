@@ -1,5 +1,7 @@
 import json
 
+from HardwareStore.DataAccess.Contexts import FileDataContext
+
 
 class MaterialFileRepository:
     def __init__(self, context: FileDataContext):
@@ -26,3 +28,13 @@ class MaterialFileRepository:
     def __write(self, data):
         with open(self._context.path, "w", encoding="utf-8") as file:
             json.dump(data, file, indent=3)
+
+    def delete(self, id):
+        data_to_remove = self.get_by_id(id)
+        all_data = self.get()
+        all_data.remove(data_to_remove)
+        self.__write(all_data)
+
+
+
+
