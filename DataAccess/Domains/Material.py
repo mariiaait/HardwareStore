@@ -27,10 +27,10 @@ class Material:
     def __setattr__(self, key, value):
         types_dict = {'__id': int, '_name': str, '_price': float}
         if key not in types_dict:
-            raise ValueError
+            raise AttributeError
 
         if not isinstance(value, (types_dict[key])):
-            raise ValueError
+            raise TypeError
 
         object.__setattr__(self, key, value)
 
