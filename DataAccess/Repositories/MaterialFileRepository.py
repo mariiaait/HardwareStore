@@ -11,7 +11,7 @@ class MaterialFileRepository:
             current_data["materials"].append(data)
             with open(self._context.path, "w", encoding="utf-8") as file:
                 json.dump(current_data, file, indent=3)
-        except FileNotFoundError:
+        except json.JSONDecodeError:
             with open(self._context.path, "w", encoding="utf-8") as file:
                 json.dump({"materials": [data]}, file, indent=3)
 
