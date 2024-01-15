@@ -30,7 +30,7 @@ class Material:
             raise AttributeError('Attribute was not found')
 
         if not isinstance(value, (types_dict[key])):
-            raise TypeError('incorrect data type')
+            raise TypeError('Incorrect data type')
 
         object.__setattr__(self, key, value)
 
