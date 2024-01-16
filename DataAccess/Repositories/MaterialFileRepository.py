@@ -17,7 +17,7 @@ class MaterialFileRepository:
             with open(self._context.path, "r", encoding="utf-8") as file:
                 return json.load(file)
         except json.JSONDecodeError:
-            # json.dump({"materials": []}, file, indent=3)
+            # /json.dump({"materials": []}, file, indent=3)
             self.__write({"materials": []})
 
     def get_by_id(self, id):
