@@ -1,5 +1,5 @@
 class Material:
-    '''Material class description'''
+    """Material class description"""
     __id: int = 0
 
     def __init__(self, name: str, price: float):
@@ -33,8 +33,3 @@ class Material:
             raise TypeError('Incorrect data type')
 
         object.__setattr__(self, key, value)
-
-
-
-
-

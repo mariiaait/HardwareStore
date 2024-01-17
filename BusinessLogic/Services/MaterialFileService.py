@@ -25,19 +25,12 @@ class MaterialFileService:
 
     def update(self, id, data):
         try:
-            return self._repository.update(id, data)
+            self._repository.update(id, data)
         except FileNotFoundError:
             pass
 
     def delete(self, id):
         try:
-            return self._repository.delete(id)
+            self._repository.delete(id)
         except FileNotFoundError:
             pass
-
-
-
-
-
-
-
