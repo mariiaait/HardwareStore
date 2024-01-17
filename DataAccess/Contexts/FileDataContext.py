@@ -20,4 +20,3 @@ class FileDataContext:
     @property
     def path(self):
         return self._path
-

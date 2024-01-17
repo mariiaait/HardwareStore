@@ -20,19 +20,28 @@ class MaterialFileRepository:
             return {"materials": []}
 
     def get_by_id(self, id):
-        return next(filter(lambda x: x['id'] == id, self.get()["materials"]))
+        all_data = self.get()
+        MaterialFileRepository.__get_by_id_from(id, all_data)
 
     def update(self, id, data):
         all_data = self.get()
-        updated_data = {"materials": list(map(lambda current: data if current['id'] == id else current, all_data["materials"]))}
+        updated_data = {
+            "materials": list(map(lambda current: data if current['id'] == id else current, all_data["materials"]))}
         self.__write(updated_data)
+
+    def delete(self, id):
+        all_data = self.get()
+        data_to_remove = MaterialFileRepository.__get_by_id_from(id, all_data)
+        all_data.remove(data_to_remove)
+        self.__write(all_data)
 
     def __write(self, data):
         with open(self._context.path, "w", encoding="utf-8") as file:
             json.dump(data, file, indent=3)
 
-    def delete(self, id):
-        data_to_remove = self.get_by_id(id)
-        all_data = self.get()
-        all_data.remove(data_to_remove)
-        self.__write(all_data)
+    @staticmethod
+    def __get_by_id_from(id, data):
+        for item in data["materials"]:
+            if item["id"] == id:
+                return item
+        raise Exception(f"Item with id '{id}' was not found")
