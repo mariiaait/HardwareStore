@@ -8,14 +8,16 @@ class MaterialFileRepository:
         self._context = context
 
     def add(self, data):
-        try:
-            self.__write(data)
-        except FileNotFoundError:
-            data = {"materials": []}
+        current_data = self.get()
+        current_data["materials"].append(data)
+        self.__write(current_data)
 
     def get(self):
-        with open(self._context.path, "r", encoding="utf-8") as file:
-            return json.load(file)
+        try:
+            with open(self._context.path, "r", encoding="utf-8") as file:
+                return json.load(file)
+        except json.JSONDecodeError:
+            return {"materials": []}
 
     def get_by_id(self, id):
         return next(filter(lambda x: x['id'] == id, self.get()["materials"]))
