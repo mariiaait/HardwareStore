@@ -5,7 +5,7 @@ class Material:
     def __init__(self, name: str, price: float):
         self._name: str = name
         self._price: float = price
-        self.__id: int = Material.set_id()
+        self._id: int = Material.set_id()
 
     @property
     def name(self) -> str:
@@ -17,7 +17,7 @@ class Material:
 
     @property
     def id(self) -> int:
-        return self.__id
+        return self._id
 
     @classmethod
     def set_id(cls) -> int:
@@ -25,7 +25,7 @@ class Material:
         return cls.__id
 
     def __setattr__(self, key, value):
-        types_dict = {'__id': int, '_name': str, '_price': float}
+        types_dict = {'_id': int, '_name': str, '_price': float}
         if key not in types_dict:
             raise AttributeError('Attribute was not found')
 
