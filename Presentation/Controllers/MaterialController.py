@@ -3,7 +3,6 @@ class MaterialController:
     def __init__(self, service):
         self._service = service
 
-
     def add(self, data):
         self._service.add(data)
 
