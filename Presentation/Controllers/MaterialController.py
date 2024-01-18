@@ -13,7 +13,7 @@ class MaterialController:
         return self._service.get_by_id(id)
 
     def update(self, id, data):
-        return self._service.update(id,data)
+        self._service.update(id,data)
 
     def delete(self, id):
-        return self._service.delete(id)
+        self._service.delete(id)
