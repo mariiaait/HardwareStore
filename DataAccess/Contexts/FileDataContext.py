@@ -2,9 +2,9 @@ class FileDataContext:
     __instance = None
     __initialized = False
 
-    def __init__(self, file_path):
+    def __init__(self, path):
         if not self.__initialized:
-            self._file_path = file_path
+            self._path = path
             self.__connect()
             FileDataContaxt.__initialized = True
 
@@ -14,10 +14,9 @@ class FileDataContext:
         return cls.__instance
 
     def __connect(self):
-    with open(self._file_path, "w") as _:
-        pass
+        with open(self._path, "w") as _:
+            pass
 
     @property
-    def file_path(self):
-        return self._fale_path
-
+    def path(self):
+        return self._path
