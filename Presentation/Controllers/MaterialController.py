@@ -1,25 +1,20 @@
 
-class Controller:
-    def __init__(self):
-        self.data = []
+class MaterialController:
+    def __init__(self, service):
+        self._service = service
 
-    def add(self, item):
-        self.data.append(item)
 
-    def get(self):
-        return self.data
+    def add(self, data):
+        self._service.add(data)
 
-    def get_by_id(self, item_id):
-        for item in self.data:
-            if item.id == item_id:
-                return item
-        return None
+    def get(self, service):
+        return self._service.get()
 
-    def update(self, item_id, new_data):
-        for i, item in enumerate(self.data):
-            if item.id == item_id:
-                self.data[i] = new_data
-                break
+    def get_by_id(self, id):
+        return self._service.get_by_id(id)
 
-    def delete(self, item_id):
-        self.data = [item for item in self.data if item.id != item_id]
+    def update(self, id, data):
+        return self._service.update(id,data)
+
+    def delete(self, id):
+        return self._service.delete(id)
