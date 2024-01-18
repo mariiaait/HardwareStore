@@ -33,3 +33,10 @@ class Material:
             raise TypeError('Incorrect data type')
 
         object.__setattr__(self, key, value)
+
+    def __getattribute__(self, item):
+        atributes_list = ['_id', '_name', '_price']
+        if item in atributes_list:
+            return f'Access to private attribute {item}'
+        return super().__getattribute__(item)
+
