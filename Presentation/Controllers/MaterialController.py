@@ -1,4 +1,3 @@
-
 class MaterialController:
     def __init__(self, service):
         self._service = service
@@ -13,7 +12,7 @@ class MaterialController:
         return self._service.get_by_id(id)
 
     def update(self, id, data):
-        self._service.update(id,data)
+        self._service.update(id, data)
 
     def delete(self, id):
         self._service.delete(id)

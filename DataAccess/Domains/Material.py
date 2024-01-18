@@ -3,9 +3,9 @@ class Material:
     __id: int = 0
 
     def __init__(self, name: str, price: float):
+        self._id: int = Material.set_id()
         self._name: str = name
         self._price: float = price
-        self._id: int = Material.set_id()
 
     @property
     def name(self) -> str:
@@ -33,7 +33,6 @@ class Material:
             raise TypeError('Incorrect data type')
 
         object.__setattr__(self, key, value)
-
 
     def __getattribute__(self, item):
         if item in ('_id', '_name', '_price'):

@@ -1,7 +1,9 @@
 import json
 import logging
 import datetime
+
 logger = logging.getLogger(__name__)
+
 
 def try_handle_log_levels(log_mes):
     def decorator(func):
@@ -17,5 +19,7 @@ def try_handle_log_levels(log_mes):
                 logger.error(f"ERROR: {datetime.datetime.now()}\t{ex}\tValues: {args}, {kwargs}")
             except Exception as ex:
                 logger.error(f"ERROR: {datetime.datetime.now()}\t{ex}\tValues: {args}, {kwargs}")
+
         return wrapper
+
     return decorator
