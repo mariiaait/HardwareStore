@@ -33,3 +33,9 @@ class Material:
             raise TypeError('Incorrect data type')
 
         object.__setattr__(self, key, value)
+
+
+    def __getattribute__(self, item):
+        if item in ('_id', '_name', '_price'):
+            raise AttributeError(f'Access to protected attributes is denied')
+        return super().__getattribute__(item)
