@@ -6,7 +6,7 @@ class FileDataContext:
         if not self.__initialized:
             self._path = path
             self.__connect()
-            FileDataContext.__initialized = True
+            FileDataContaxt.__initialized = True
 
     def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
