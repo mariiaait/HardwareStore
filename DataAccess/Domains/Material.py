@@ -38,4 +38,4 @@ class Material:
     def __getattribute__(self, item):
         if item in ('_id', '_name', '_price'):
             raise AttributeError(f'Access to protected attribute {item}')
-        return super().__getattribute__(item)
+        return super().__getattribute__(self, item)
