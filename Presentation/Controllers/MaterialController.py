@@ -5,7 +5,7 @@ class MaterialController:
     def add(self, data):
         self._service.add(data)
 
-    def get(self, service):
+    def get(self):
         return self._service.get()
 
     def get_by_id(self, id):
