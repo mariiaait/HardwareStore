@@ -1,8 +1,6 @@
 from DataAccess.Repositories import MaterialFileRepository
 from Infrastructure.Validators.Decorators import try_handle_log_levels
 
-import datetime
-
 class MaterialFileService:
     def __init__(self, repository: MaterialFileRepository):
         self._repository = repository
