@@ -1,4 +1,9 @@
+import json
+import os
+
 from Infrastructure.Validators.Decorators.FileExceptionHandlers import try_handle_log_levels
+
+from HardwareStore.Configuration.config import DEFAULT_MATERIALS_DICT
 
 
 class FileDataContext:
@@ -17,9 +22,10 @@ class FileDataContext:
         return cls.__instance
 
     @try_handle_log_levels("Connect to file")
-    def __connect(self):
-        with open(self._path, "w") as _:
-            pass
+    def __connect_of_default(self):
+        if not os.path.exists(self._path):
+            with open(self._path, "w") as file:
+                json.dump(DEFAULT_MATERIALS_DICT,file)
 
     @property
     def path(self):
