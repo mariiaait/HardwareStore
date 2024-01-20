@@ -1,6 +1,6 @@
 import json
 
-from Configuration.config import MATERIALS_JSON_KEY, ENCODING_TYPE, INDENT
+from Configuration.config import MATERIALS_JSON_KEY, ENCODING_TYPE, INDENT, MATERIAL_ID
 from DataAccess.Contexts import FileDataContext
 
 
@@ -27,7 +27,7 @@ class MaterialFileRepository:
     def update(self, id, data):
         all_data = self.get()
         updated_data = {
-            "materials": list(map(lambda current: data if current['id'] == id else current, all_data["materials"]))}
+            MATERIALS_JSON_KEY: list(map(lambda current: data if current[MATERIAL_ID] == id else current, all_data[MATERIALS_JSON_KEY]))}
         self.__write(updated_data)
 
     def delete(self, id):
@@ -42,7 +42,7 @@ class MaterialFileRepository:
 
     @staticmethod
     def __get_by_id_from(id, data):
-        for item in data["materials"]:
-            if item["id"] == id:
+        for item in data[MATERIALS_JSON_KEY]:
+            if item[MATERIAL_ID] == id:
                 return item
         raise Exception(f"Item with id '{id}' was not found")
