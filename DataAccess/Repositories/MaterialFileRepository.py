@@ -1,5 +1,6 @@
 import json
 
+from Configuration.config import MATERIALS_JSON_KEY, ENCODING_TYPE, INDENT
 from DataAccess.Contexts import FileDataContext
 
 
@@ -9,15 +10,15 @@ class MaterialFileRepository:
 
     def add(self, data):
         current_data = self.get()
-        current_data["materials"].append(data)
+        current_data[MATERIALS_JSON_KEY].append(data)
         self.__write(current_data)
 
     def get(self):
         try:
-            with open(self._context.path, "r", encoding="utf-8") as file:
+            with open(self._context.path, "r", encoding=ENCODING_TYPE) as file:
                 return json.load(file)
         except json.JSONDecodeError:
-            return {"materials": []}
+            return {MATERIALS_JSON_KEY: []}
 
     def get_by_id(self, id):
         all_data = self.get()
@@ -36,8 +37,8 @@ class MaterialFileRepository:
         self.__write(all_data)
 
     def __write(self, data):
-        with open(self._context.path, "w", encoding="utf-8") as file:
-            json.dump(data, file, indent=3)
+        with open(self._context.path, "w", encoding=ENCODING_TYPE) as file:
+            json.dump(data, file, indent=INDENT)
 
     @staticmethod
     def __get_by_id_from(id, data):
