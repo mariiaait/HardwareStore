@@ -1,3 +1,6 @@
+from Configuration.config import PROTECTED_MATERIAL_ID, PROTECTED_MATERIAL_NAME, PROTECTED_MATERIAL_PRICE
+
+
 class Material:
     """Material class description"""
     __id: int = 0
@@ -25,7 +28,7 @@ class Material:
         return cls.__id
 
     def __setattr__(self, key, value):
-        types_dict = {'_id': int, '_name': str, '_price': float}
+        types_dict = {PROTECTED_MATERIAL_ID: int, PROTECTED_MATERIAL_NAME: str, PROTECTED_MATERIAL_PRICE: float}
         if key not in types_dict:
             raise AttributeError('Attribute was not found')
 
@@ -35,6 +38,6 @@ class Material:
         object.__setattr__(self, key, value)
 
     def __getattribute__(self, item):
-        if item in ('_id', '_name', '_price'):
+        if item in (PROTECTED_MATERIAL_ID, PROTECTED_MATERIAL_NAME, PROTECTED_MATERIAL_PRICE):
             raise AttributeError(f'Access to protected attribute {item}')
         return super().__getattribute__(self, item)

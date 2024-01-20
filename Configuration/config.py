@@ -1,2 +1,15 @@
 RELATIVE_PATH_TO_DATA_JSON = "Tools/data.json"
 RELATIVE_PATH_TO_TEST_DATA_JSON = "Tools/TestData/test_data.json"
+
+MATERIALS_JSON_KEY = "materials"
+
+PROTECTED_MATERIAL_ID = "_id"
+PROTECTED_MATERIAL_NAME = "_name"
+PROTECTED_MATERIAL_PRICE = "_price"
+
+MATERIAL_ID = "id"
+MATERIAL_NAME = "name"
+MATERIAL_PRICE = "price"
+
+ENCODING_TYPE = "utf-8"
+INDENT = 3
