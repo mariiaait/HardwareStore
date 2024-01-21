@@ -1,6 +1,7 @@
 import json
 import logging
 import datetime
+from Presentation.Response import DataResponse
 
 logger = logging.getLogger(__name__)
 
@@ -15,11 +16,13 @@ def try_handle_log_levels(log_mes):
                     return result
             except FileNotFoundError as ex:
                 logger.error(f"ERROR: {datetime.datetime.now()}\t{ex}\tValues: {args}, {kwargs}")
+                return DataResponse(False, None, str(ex))
             except json.JSONDecodeError as ex:
                 logger.error(f"ERROR: {datetime.datetime.now()}\t{ex}\tValues: {args}, {kwargs}")
+                return DataResponse(False, None, str(ex))
             except Exception as ex:
                 logger.error(f"ERROR: {datetime.datetime.now()}\t{ex}\tValues: {args}, {kwargs}")
-
+                return DataResponse(False, None, str(ex))
         return wrapper
 
     return decorator
