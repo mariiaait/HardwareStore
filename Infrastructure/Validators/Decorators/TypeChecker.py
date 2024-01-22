@@ -12,13 +12,13 @@ def type_check_decorator(func: Callable) -> Callable:
             parameter_type_hint = type_hints.get(parameter_name, None)
             if parameter_type_hint and not isinstance(parameter_value, parameter_type_hint):
                 raise TypeError(f"Type mismatch for argument {parameter_name}. "
-                                f"Exrected {parameter_type_hint},got {type(parameter_value)}.")
+                                f"Expected {parameter_type_hint},got {type(parameter_value)}.")
 
         for parameter_name, parameter_value in kwargs.items():
             parameter_type_hint = type_hints.get(parameter_name, None)
             if parameter_type_hint and not isinstance(parameter_value, parameter_type_hint):
                 raise TypeError(f"Type mismatch for argument {parameter_name}. "
-                                f"Exrected {parameter_type_hint},got {type(parameter_value)}.")
+                                f"Expected {parameter_type_hint},got {type(parameter_value)}.")
 
         return func(*args, **kwargs)
     return wrapper
