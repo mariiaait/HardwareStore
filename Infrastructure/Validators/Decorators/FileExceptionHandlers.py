@@ -6,6 +6,7 @@ logger = logging.getLogger(__name__)
 
 
 def try_handle_log_levels(log_mes):
+    """Decorator which proceed exceptions, write information or raise error"""
     def decorator(func):
         def wrapper(*args, **kwargs):
             try:
