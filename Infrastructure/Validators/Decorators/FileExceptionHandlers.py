@@ -2,13 +2,14 @@ import json
 import logging
 import datetime
 from Presentation.Response import DataResponse
+from typing import Callable
 
 logger = logging.getLogger(__name__)
 
 
-def try_handle_log_levels(log_mes):
-    def decorator(func):
-        def wrapper(*args, **kwargs):
+def try_handle_log_levels(log_mes: str) -> Callable:
+    def decorator(func: Callable) -> Callable:
+        def wrapper(*args, **kwargs) -> dict:
             try:
                 result = func(*args, **kwargs)
                 logger.info(f"INFO: {datetime.datetime.now()}\t{log_mes}\tValues: {args}, {kwargs}")
