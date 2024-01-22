@@ -1,7 +1,7 @@
 from BusinessLogic.Services.MaterialFileService import MaterialFileService
 from DataAccess.Domains.Material import Material
 
-from HardwareStore.Infrastructure.Validators.Decorators.TypeChecker import type_check_decorator
+from Infrastructure.Validators.Decorators.TypeChecker import type_check_decorator
 
 
 class MaterialController:
