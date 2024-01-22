@@ -26,12 +26,15 @@ class MaterialFileRepository:
         updated_data = {
             MATERIALS_JSON_KEY: list(
                 map(lambda current: data if current[MATERIAL_ID] == id else current, all_data[MATERIALS_JSON_KEY]))}
+        if all_data == updated_data:
+            updated_data[MATERIALS_JSON_KEY].append(data)
+
         self.__write(updated_data)
 
     def delete(self, id: int) -> None:
         all_data = self.get()
         data_to_remove = MaterialFileRepository.__get_by_id_from(id, all_data)
-        all_data.remove(data_to_remove)
+        all_data[MATERIALS_JSON_KEY].remove(data_to_remove)
         self.__write(all_data)
 
     def __write(self, data: dict) -> None:
