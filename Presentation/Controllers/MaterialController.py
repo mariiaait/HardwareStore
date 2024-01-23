@@ -13,11 +13,11 @@ class MaterialController:
         self._service.add(data)
 
     @type_check_decorator
-    def get(self) -> dict:
+    def get(self) -> "DataResponse":
         return self._service.get()
 
     @type_check_decorator
-    def get_by_id(self, id: int) -> dict:
+    def get_by_id(self, id: int) -> "DataResponse":
         return self._service.get_by_id(id)
 
     @type_check_decorator

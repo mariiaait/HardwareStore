@@ -12,11 +12,11 @@ class MaterialFileService:
         self._repository.add(data)
 
     @try_handle_log_levels('Try to get data from file: ')
-    def get(self) -> dict:
+    def get(self) -> "DataResponse":
         return self._repository.get()
 
     @try_handle_log_levels('Try to get data by id from file: ')
-    def get_by_id(self, id: int) -> dict:
+    def get_by_id(self, id: int) -> "DataResponse":
         return self._repository.get_by_id(id)
 
     @try_handle_log_levels('Try to update data in file: ')
