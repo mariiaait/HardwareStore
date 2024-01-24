@@ -2,7 +2,7 @@ import json
 import os
 
 from Configuration.config import DEFAULT_MATERIALS_DICT
-from Infrastructure.Validators.Decorators.FileExceptionHandlers import try_handle_log_levels
+from Infrastructure.Validators.Decorators.ExceptionHandlers.FileExceptionHandlers import try_handle_log_levels
 
 
 class FileDataContext:
@@ -12,7 +12,7 @@ class FileDataContext:
     def __init__(self, path: str):
         if not self.__initialized:
             self._path = path
-            self.__connect_of_default()
+            self.__connect_or_default()
             FileDataContext.__initialized = True
 
     def __new__(cls, *args, **kwargs):
@@ -21,7 +21,7 @@ class FileDataContext:
         return cls.__instance
 
     @try_handle_log_levels("Connect to file")
-    def __connect_of_default(self) -> None:
+    def __connect_or_default(self) -> None:
         if not os.path.exists(self._path):
             with open(self._path, "w") as file:
                 json.dump(DEFAULT_MATERIALS_DICT, file)
