@@ -1,12 +1,14 @@
 from DataAccess.Domains.Material import Material
 from DataAccess.Repositories import MaterialFileRepository
-from Infrastructure.Validators.Decorators.FileExceptionHandlers import try_handle_log_levels
+from Infrastructure.Validators.Decorators.DataJsonConverter.DataJsonConverter import converting_data_material_to_json
+from Infrastructure.Validators.Decorators.ExceptionHandlers.FileExceptionHandlers import try_handle_log_levels
 
 
 class MaterialFileService:
     def __init__(self, repository: MaterialFileRepository):
         self._repository = repository
 
+    @converting_data_material_to_json
     @try_handle_log_levels('Try to add data to file: ')
     def add(self, data: Material) -> None:
         self._repository.add(data)
@@ -19,6 +21,7 @@ class MaterialFileService:
     def get_by_id(self, id: int) -> dict:
         return self._repository.get_by_id(id)
 
+    @converting_data_material_to_json
     @try_handle_log_levels('Try to update data in file: ')
     def update(self, id: int, data: Material) -> None:
         self._repository.update(id, data)
