@@ -5,10 +5,14 @@ from DataAccess.Domains.Material import Material
 from DataAccess.Repositories.MaterialFileRepository import MaterialFileRepository
 from Presentation.Controllers.MaterialController import MaterialController
 
-fileContext = FileDataContext(RELATIVE_PATH_TO_DATA_JSON)
-materialRepository = MaterialFileRepository(fileContext)
-materialService = MaterialFileService(materialRepository)
-materialController = MaterialController(materialService)
+def main():
+    fileContext = FileDataContext(RELATIVE_PATH_TO_DATA_JSON)
+    materialRepository = MaterialFileRepository(fileContext)
+    materialService = MaterialFileService(materialRepository)
+    materialController = MaterialController(materialService)
+
+if __name__ == "__main__":
+    main()
 
 # materialController.get()
 
