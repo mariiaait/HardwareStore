@@ -11,6 +11,6 @@ materialService = MaterialFileService(materialRepository)
 materialController = MaterialController(materialService)
 
 # materialController.get()
-
-materialController.add(Material("Brick", 200))
-materialController.get_by_id(3)
+material = Material("Brick", 200.0)
+materialController.add(material)
+print(materialController.get_by_id(3))

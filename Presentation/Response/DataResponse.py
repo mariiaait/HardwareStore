@@ -27,3 +27,9 @@ class DataResponse:
     @errors.setter
     def errors(self, value):
         self._errors = value
+
+    def __str__(self):
+        return ("{\n" + (f"\tis_success: {self._is_success}\n"
+                         f"\tresponse: {self._response}\n"
+                         f"\terrors: {self._errors}\n")
+                + "}\n")

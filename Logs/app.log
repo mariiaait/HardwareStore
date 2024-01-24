@@ -1,0 +1,7 @@
+2024-01-24 13:22:15,783 - ERROR - Expecting value: line 1 column 1 (char 0)	Values: (<BusinessLogic.Services.MaterialFileService.MaterialFileService object at 0x000001E777E6EBA0>, <DataAccess.Domains.Material.Material object at 0x000001E777E6EC90>), {}
+2024-01-24 13:22:15,784 - ERROR - Expecting value: line 1 column 1 (char 0)	Values: (<BusinessLogic.Services.MaterialFileService.MaterialFileService object at 0x000001E777E6EBA0>, 1), {}
+2024-01-24 13:27:19,130 - ERROR - Expecting value: line 1 column 1 (char 0)	Values: (<BusinessLogic.Services.MaterialFileService.MaterialFileService object at 0x00000121588BA060>, <DataAccess.Domains.Material.Material object at 0x00000121588BA630>), {}
+2024-01-24 13:27:19,130 - ERROR - Expecting value: line 1 column 1 (char 0)	Values: (<BusinessLogic.Services.MaterialFileService.MaterialFileService object at 0x00000121588BA060>, 1), {}
+2024-01-24 13:27:58,284 - ERROR - Expecting value: line 1 column 1 (char 0)	Values: (<BusinessLogic.Services.MaterialFileService.MaterialFileService object at 0x0000025C1F39A090>, <DataAccess.Domains.Material.Material object at 0x0000025C1F39B710>), {}
+2024-01-24 13:27:58,284 - ERROR - Expecting value: line 1 column 1 (char 0)	Values: (<BusinessLogic.Services.MaterialFileService.MaterialFileService object at 0x0000025C1F39A090>, 1), {}
+2024-01-24 13:28:39,863 - ERROR - Item with id '3' was not found	Values: (<BusinessLogic.Services.MaterialFileService.MaterialFileService object at 0x000001EAE37EE4B0>, 3), {}

@@ -8,8 +8,8 @@ class MaterialFileService:
     def __init__(self, repository: MaterialFileRepository):
         self._repository = repository
 
-    @converting_data_material_to_json
     @try_handle_log_levels('Try to add data to file: ')
+    @converting_data_material_to_json
     def add(self, data: Material) -> None:
         self._repository.add(data)
 
