@@ -8,10 +8,13 @@ class MaterialFileRepository:
     def __init__(self, context: FileDataContext):
         self._context = context
 
-    def add(self, data: dict) -> None:
+    def add(self, data: dict) -> bool:
         current_data = self.get()
-        current_data[MATERIALS_JSON_KEY].append(data)
-        self.__write(current_data)
+        if not MaterialFileRepository.is_exist(data, current_data):
+            current_data[MATERIALS_JSON_KEY].append(data)
+            self.__write(current_data)
+            return True
+        return False
 
     def get(self) -> dict:
         with open(self._context.path, "r", encoding=ENCODING_TYPE) as file:
@@ -21,23 +24,29 @@ class MaterialFileRepository:
         all_data = self.get()
         return MaterialFileRepository.__get_by_id_from(id, all_data)
 
-    def update(self, id: int, data: int) -> None:
+    def update(self, data: dict) -> bool:
         all_data = self.get()
-        updated_data = {
-            MATERIALS_JSON_KEY: list(
-                map(lambda current: data if current[MATERIAL_ID] == id else current, all_data[MATERIALS_JSON_KEY]))}
-        if all_data == updated_data:
+        updated_data = all_data
+
+        if MaterialFileRepository.is_exist(data, all_data):
+            updated_data = {
+                MATERIALS_JSON_KEY: list(
+                    map(lambda current: data if current[MATERIAL_ID] == data[MATERIAL_ID] else current,
+                        all_data[MATERIALS_JSON_KEY]))}
+        else:
             updated_data[MATERIALS_JSON_KEY].append(data)
 
         self.__write(updated_data)
+        return True
 
-    def delete(self, id: int) -> None:
+    def delete(self, id: int) -> bool:
         all_data = self.get()
         data_to_remove = MaterialFileRepository.__get_by_id_from(id, all_data)
         all_data[MATERIALS_JSON_KEY].remove(data_to_remove)
         self.__write(all_data)
+        return True
 
-    def __write(self, data: dict) -> None:
+    def __write(self, data: dict) -> bool:
         with open(self._context.path, "w", encoding=ENCODING_TYPE) as file:
             json.dump(data, file, indent=INDENT)
 
@@ -47,3 +56,7 @@ class MaterialFileRepository:
             if item[MATERIAL_ID] == id:
                 return item
         raise Exception(f"Item with id '{id}' was not found")
+
+    @staticmethod
+    def is_exist(item: dict, data: dict) -> bool:
+        return any(map(lambda element: item[MATERIAL_ID] == element[MATERIAL_ID], data[MATERIALS_JSON_KEY]))

@@ -2,7 +2,8 @@ import json
 import os
 
 from Configuration.config import DEFAULT_MATERIALS_DICT
-from Infrastructure.Validators.Decorators.ExceptionHandlers.FileExceptionHandlers import try_handle_log_levels
+from Infrastructure.Validators.Decorators.ExceptionHandlers.FileExceptionHandlers import try_handle_log_levels_for_crud, \
+    handle_base_exceptions
 
 
 class FileDataContext:
@@ -20,7 +21,7 @@ class FileDataContext:
             cls.__instance = super().__new__(cls)
         return cls.__instance
 
-    @try_handle_log_levels("Connect to file")
+    @handle_base_exceptions("Connect or create json file with default constant")
     def __connect_or_default(self) -> None:
         if not os.path.exists(self._path):
             with open(self._path, "w") as file:

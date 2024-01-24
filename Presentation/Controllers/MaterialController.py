@@ -9,8 +9,8 @@ class MaterialController:
         self._service = service
 
     @type_check_decorator
-    def add(self, data: Material) -> None:
-        self._service.add(data)
+    def add(self, data: Material) -> bool:
+        return self._service.add(data)
 
     @type_check_decorator
     def get(self) -> dict:
@@ -21,9 +21,9 @@ class MaterialController:
         return self._service.get_by_id(id)
 
     @type_check_decorator
-    def update(self, id: int, data: Material) -> None:
-        self._service.update(id, data)
+    def update(self, data: Material) -> bool:
+        return self._service.update(data)
 
     @type_check_decorator
-    def delete(self, id: int) -> None:
-        self._service.delete(id)
+    def delete(self, id: int) -> bool:
+        return self._service.delete(id)
