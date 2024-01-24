@@ -1,5 +1,10 @@
 import inspect
+import logging
 from typing import Callable, get_type_hints
+
+from Configuration.config import RELATIVE_PATH_TO_LOG_FILE
+
+logging.basicConfig(filename=RELATIVE_PATH_TO_LOG_FILE, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def type_check_decorator(func: Callable) -> Callable:
@@ -21,4 +26,5 @@ def type_check_decorator(func: Callable) -> Callable:
                                 f"Expected {parameter_type_hint},got {type(parameter_value)}.")
 
         return func(*args, **kwargs)
+
     return wrapper

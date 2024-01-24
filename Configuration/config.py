@@ -1,6 +1,8 @@
 RELATIVE_PATH_TO_DATA_JSON = "Tools/data.json"
 RELATIVE_PATH_TO_TEST_DATA_JSON = "Tools/TestData/test_data.json"
 RELATIVE_PATH_TO_LOG_FILE = "Logs/app.log"
+RELATIVE_PATH_TO_SYSTEM_ID_FILE = "Tools/System/material_ids.txt"
+
 MATERIALS_JSON_KEY = "materials"
 
 DEFAULT_MATERIALS_DICT = {MATERIALS_JSON_KEY: []}
@@ -12,6 +14,8 @@ PROTECTED_MATERIAL_PRICE = "_price"
 MATERIAL_ID = "id"
 MATERIAL_NAME = "name"
 MATERIAL_PRICE = "price"
+
+START_MATERIAL_ID_VALUE = 1
 
 ENCODING_TYPE = "utf-8"
 INDENT = 3

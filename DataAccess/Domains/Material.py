@@ -1,12 +1,10 @@
 from Configuration.config import PROTECTED_MATERIAL_ID, PROTECTED_MATERIAL_NAME, PROTECTED_MATERIAL_PRICE
-
+from Infrastructure.Builders.MaterialFileIdBuilder import MaterialFileIdBuilder
 
 class Material:
     """Material class description"""
-    __id: int = 0
-
-    def __init__(self, name: str, price: float):
-        self._id: int = Material.set_id()
+    def __init__(self, name: str, price: float, id: int = None):
+        self._id: int = id if id is not None else MaterialFileIdBuilder.build_id()
         self._name: str = name
         self._price: float = price
 
@@ -21,11 +19,6 @@ class Material:
     @property
     def id(self) -> int:
         return self._id
-
-    @classmethod
-    def set_id(cls) -> int:
-        cls.__id += 1
-        return cls.__id
 
     def __setattr__(self, key, value):
         types_dict = {PROTECTED_MATERIAL_ID: int, PROTECTED_MATERIAL_NAME: str, PROTECTED_MATERIAL_PRICE: float}
