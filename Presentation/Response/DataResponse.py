@@ -1,35 +1,34 @@
 class DataResponse:
-    def __init__(self, is_success, response, errors):
+    def __init__(self, is_success: bool, response: str, errors: str):
         self._is_success = is_success
         self._response = response
         self._errors = errors
 
     @property
-    def is_success(self):
+    def is_success(self: bool) -> bool:
         return self._is_success
 
     @is_success.setter
-    def is_success(self, value):
+    def is_success(self, value: bool) -> None:
         self._is_success = value
 
     @property
-    def response(self):
+    def response(self) -> dict:
         return self._response
 
     @response.setter
-    def response(self, value):
+    def response(self, value: dict) -> None:
         self._response = value
 
     @property
-    def errors(self):
+    def errors(self: list) -> list:
         return self._errors
 
     @errors.setter
-    def errors(self, value):
+    def errors(self, value: list) -> None:
         self._errors = value
 
-    def __repr__(self):
-        return ("{\n" + (f"\tis_success: {self._is_success}\n"
-                         f"\tresponse: {self._response}\n"
-                         f"\terrors: {self._errors}\n")
-                + "}\n")
+    def __getattribute__(self, name: str):
+        if name in ("_is_success", "_response", "_errors"):
+            raise AttributeError("Access to protected or private attributes dined")
+        return object.__getattribute__(self, name)
